@@ -1,11 +1,14 @@
-require('basics')
-require('colors')
-require('telescope-config')
+require('user.basics')
+require('user.colors')
+require('user.telescope-config')
 -- require('coc-config')
 -- require('lsp')
-require('lualine').setup()
+require('user.lualine')
+require('user.nvim-tree')
+require('user.comment')
 
-require'nvim-treesitter.configs'.setup {
+
+require('nvim-treesitter.configs').setup({
   -- ensure_installed = "maintained",
   context_commentstring = {
     enable = true
@@ -17,8 +20,7 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = true
   }
-}
-
+})
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
@@ -32,16 +34,19 @@ return require('packer').startup(function()
   use 'nvim-treesitter/nvim-treesitter' 
   -- commenting
   -- use 'tpope/vim-commentary'
-  use {'numtostr/comment.nvim', 
-       config = function()
-          require('comment').setup()
-       end
-  }
+  use 'numToStr/Comment.nvim' 
+
   
   use 'joosepalviste/nvim-ts-context-commentstring'
   use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    }
   }
   use {
     'nvim-telescope/telescope.nvim',
