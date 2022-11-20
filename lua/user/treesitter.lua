@@ -48,4 +48,6 @@ configs.setup {
   playground = {
     enable = true,
   },
+  -- foldmethod = "expr",
+  -- foldexpr = "nvim_treesitter#foldexpr()",
 }

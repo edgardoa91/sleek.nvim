@@ -1,26 +1,16 @@
 require('user.basics')
 require('user.colors')
 require('user.telescope-config')
--- require('coc-config')
--- require('lsp')
-require('user.lualine')
+require('user.lsp')
 require('user.nvim-tree')
 require('user.comment')
+require('user.lsp_lines')
+require('user.pretty_fold')
+require('user.treesitter')
 
-
-require('nvim-treesitter.configs').setup({
-  -- ensure_installed = "maintained",
-  context_commentstring = {
-    enable = true
-  },
-  highlight = {
-    enable = true,
-    disable = { "lua" }
-  },
-  indent = {
-    enable = true
-  }
-})
+-- Not installed
+-- require('coc-config')
+-- require('user.lualine')
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
@@ -33,10 +23,8 @@ return require('packer').startup(function()
   use 'folke/tokyonight.nvim'
   use 'nvim-treesitter/nvim-treesitter' 
   -- commenting
-  -- use 'tpope/vim-commentary'
-  use 'numToStr/Comment.nvim' 
+  use 'numToStr/Comment.nvim'
 
-  
   use 'joosepalviste/nvim-ts-context-commentstring'
   use {
     'nvim-lualine/lualine.nvim',
@@ -55,7 +43,16 @@ return require('packer').startup(function()
   use {
     "ur4ltz/surround.nvim",
     config = function()
-      require"surround".setup {mappings_style = "surround"}
+      require("surround").setup {mappings_style = "surround"}
     end
   }
+  use {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  }
+  use 'anuvyklack/pretty-fold.nvim'
+
+
 end)
